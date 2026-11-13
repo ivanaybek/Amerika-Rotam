@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0e1923">
+  <title>Amerika Rotam · Sana uygun ABD yollarını keşfet</title>
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./amerika-rotam.js"></script>
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="https://ivanaybek.com" target="_blank" rel="noopener noreferrer" aria-label="Ivan Aybek web sitesi">Ivan Aybek</a><span class="header-note">ABD’ye giden yolunu keşfet</span></header>
+  <main>
+    <div class="workspace">
+      <section id="wizard" aria-labelledby="page-title">
+        <nav aria-label="Profil adımları"><ol class="steps">
+          <li><button class="step-link" type="button" aria-current="step"><span class="step-number">01</span>Yaşın</button></li>
+          <li><button class="step-link" type="button" disabled><span class="step-number">02</span>Eğitimin</button></li>
+          <li><button class="step-link" type="button" disabled><span class="step-number">03</span>İngilizcen</button></li>
+        </ol></nav>
+        <div class="hero">
+          <h1 id="page-title">Amerika Rotam<span id="question">Kaç yaşındasın?</span></h1>
+          <p class="intro" id="intro">Yaşına, eğitimine ve İngilizce seviyene göre sana uygun ABD yollarını keşfet.</p>
+          <form id="profile" novalidate>
+            <fieldset class="stage">
+              <label for="age">Yaşın</label>
+              <input id="age" name="age" type="number" min="0" step="1" required placeholder="21" inputmode="numeric">
+            </fieldset>
+            <fieldset class="stage" hidden>
+              <label for="education">Eğitim durumun</label>
+              <select id="education" name="educationStatus" required><option value="">Eğitim durumunu seç</option></select>
+            </fieldset>
+            <fieldset class="stage" hidden>
+              <label for="english">İngilizce düzeyin</label>
+              <select id="english" name="englishLevel" required><option value="">İngilizce düzeyini seç</option></select>
+            </fieldset>
+            <div class="actions">
+              <button id="back" class="back" type="button" hidden>← Geri</button>
+              <button class="primary" type="submit"><span id="next-label">Devam et</span><span aria-hidden="true">↗</span></button>
+            </div>
+            <p id="message" role="alert"></p>
+          </form>
+          <noscript>Profilini değerlendirmek için JavaScript’i etkinleştir.</noscript>
+        </div>
+      </section>
+      <section id="matches" aria-labelledby="matches-title" hidden>
+        <div class="results-heading"><div><h1 id="matches-title" tabindex="-1">Sana açık olabilecek yollar<span>.</span></h1><p id="count" role="status"></p></div><button id="edit-profile" class="secondary" type="button">Profilimi düzenle ↗</button></div>
+        <p class="results-note">Her kartta tahmini maliyet ve süreyi inceleyebilirsin. Başvuru için gerekli ek koşullar detaylarda yer alıyor.</p>
+        <div class="result-tabs" role="group" aria-label="Sonuç kategorisi">
+          <button type="button" class="result-tab active" data-group="general" aria-pressed="true">Genel yollar</button>
+          <button type="button" class="result-tab" data-group="special" aria-pressed="false">Özel koşullu yollar</button>
+        </div>
+        <div id="results" tabindex="0" aria-label="Eşleşen yollar"></div>
+        <nav class="pagination" aria-label="Sonuç sayfaları"><button id="previous-page" type="button">← Önceki</button><span id="page-info" role="status"></span><button id="next-page" type="button">Sonraki →</button></nav>
+      </section>
+    </div>
+    <aside id="notices" aria-label="Başvuru durumu">
+      <div class="notice-fallback"><strong>DV-2027 yeni kayıtları şu anda durduruldu</strong><a href="https://travel.state.gov/en/newsroom/visas/2025/changes-to-2027-dv-program-entry-period.html" target="_blank" rel="noopener noreferrer">Resmî duyuru ↗</a></div>
+    </aside>
+    <footer class="lower">
+      <button type="button" data-dialog="catalog-dialog">Vize ve program kataloğunu incele <span aria-hidden="true">↗</span></button>
+      <button type="button" data-dialog="method-dialog">Maliyet, süre ve ön uygunluk nasıl okunur? <span aria-hidden="true">↗</span></button>
+    </footer>
+  </main>
+  <dialog id="catalog-dialog" aria-labelledby="catalog-title"><div class="dialog-heading"><h2 id="catalog-title">Vize ve program kataloğu</h2><button class="close-dialog" type="button" aria-label="Kataloğu kapat">×</button></div><div class="dialog-body" id="catalog-list"></div></dialog>
+  <dialog id="method-dialog" aria-labelledby="method-title"><div class="dialog-heading"><h2 id="method-title">Maliyet, süre ve ön uygunluk</h2><button class="close-dialog" type="button" aria-label="Açıklamayı kapat">×</button></div><div class="dialog-body" id="method"></div></dialog>
+  <dialog id="route-dialog" aria-labelledby="route-title"><div class="dialog-heading"><h2 id="route-title"></h2><button class="close-dialog" type="button" aria-label="Vize detayını kapat">×</button></div><div class="dialog-body" id="route-body"></div></dialog>
+</body>
+</html>
